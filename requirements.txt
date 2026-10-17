@@ -1,0 +1,9 @@
+# Versiones mínimas (probado con: numpy 2.5.4, opencv-python-headless 5.0.0.93, scipy 1.18.1,
+# shapely 2.2.0, manifold3d 3.5.4, pillow 12.3.0, pymupdf 1.28.2)
+numpy>=1.26
+opencv-python-headless>=4.8
+scipy>=1.11
+shapely>=2.0
+manifold3d>=3.0
+pillow>=10.1
+pymupdf>=1.24.3

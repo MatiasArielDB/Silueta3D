@@ -1,0 +1,7 @@
+# los .bat de Windows necesitan fin de línea CRLF; los scripts de Linux/macOS, LF
+*.bat      text eol=crlf
+*.sh       text eol=lf
+*.command  text eol=lf
+*.py       text eol=lf
+*.md       text eol=lf
+*.txt      text eol=lf

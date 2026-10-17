@@ -1,0 +1,54 @@
+# Instala Silueta3D desde cero como lo haría un usuario y corre las pruebas, en cada cambio.
+name: Pruebas
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  linux:
+    name: Linux (Ubuntu)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Requisitos del sistema (los del README)
+        run: sudo apt-get update && sudo apt-get install -y python3 python3-venv python3-tk xvfb
+      - name: Instalar con ./instalar.sh
+        run: ./instalar.sh
+      - name: Pruebas del núcleo
+        run: .venv/bin/python tests/probar.py
+      - name: Prueba de la ventana (pantalla virtual)
+        run: xvfb-run -a .venv/bin/python tests/ventana.py
+
+  windows:
+    name: Windows
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Instalar con instalar.bat
+        shell: cmd
+        run: instalar.bat
+      - name: Pruebas del núcleo
+        run: .venv\Scripts\python.exe tests\probar.py
+      - name: Prueba de la ventana
+        run: .venv\Scripts\python.exe tests\ventana.py
+
+  macos:
+    name: macOS
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Instalar con ./instalar.sh
+        run: ./instalar.sh
+      - name: Pruebas del núcleo
+        run: .venv/bin/python tests/probar.py
+      - name: Prueba de la ventana
+        continue-on-error: true
+        run: .venv/bin/python tests/ventana.py

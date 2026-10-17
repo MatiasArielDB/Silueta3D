@@ -1,0 +1,9 @@
+# entorno de Python (se crea con instalar.bat)
+.venv/
+__pycache__/
+*.pyc
+
+# lo que genera cada usuario
+salida/
+programa/config.json
+tests/salida/
